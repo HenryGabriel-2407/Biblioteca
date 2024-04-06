@@ -1,19 +1,17 @@
-"""
-Primeira entrega: 19/04
-Segunda entrega: 20/06
-Individual
-Sem apresentação
-
-Classes Principais:
-    Livro: Uma classe para representar um livro, com atributos como título, autor, ISBN, gênero, etc.
-    Biblioteca: Uma classe para representar a biblioteca, que contém uma lista de livros e métodos para adicionar, remover e pesquisar livros.
-
-Funcionalidades:
-    Adicionar um novo livro à biblioteca.
-    Remover um livro da biblioteca.
-    Editar um livro da biblioteca. (um CRUD)
-    Pesquisar um livro por título, autor, ISBN, ou gênero.
-    Exibir todos os livros disponíveis na biblioteca.
-    Permitir o empréstimo e devolução de livros, com controle de disponibilidade.
-
-"""
+class Livro:
+    def __init__(self, titulo: str, autor: str, isbn: int, genero: str, ano: int, avaliacao: str) -> None:
+        self.__titulo = titulo
+        self.__autor = autor
+        self.__genero = genero
+        self.__ano = ano
+        self.__isbn = isbn
+        self.__avaliacao = avaliacao
+    
+    def info_livro(self):
+        info = f"Livro: {self.__titulo}\n"
+        info += f"\tAutor: {self.__autor}\n"
+        info += f"\tGênero: {self.__genero}\n"
+        info += f"\tAno: {self.__ano}\n"
+        info += f"\tISBN: {self.__isbn}\n"
+        info += f"\tAvaliação: {self.__avaliacao}\n"
+        return info

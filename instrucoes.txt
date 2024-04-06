@@ -1,0 +1,26 @@
+Primeira entrega: 19/04
+Segunda entrega: 20/06
+Individual
+Sem apresentação
+
+Classes Principais:
+    Livro: Uma classe para representar um livro, com atributos como título, autor, ISBN, gênero, etc.
+    Biblioteca: Uma classe para representar a biblioteca, que contém uma lista de livros e métodos para adicionar, remover e pesquisar livros.
+
+Funcionalidades:
+    Adicionar um novo livro à biblioteca.
+    Remover um livro da biblioteca.
+    Editar um livro da biblioteca. (um CRUD)
+    Pesquisar um livro por título, autor, ISBN, ou gênero.
+    Exibir todos os livros disponíveis na biblioteca.
+    Permitir o empréstimo e devolução de livros, com controle de disponibilidade.
+
+Recursos Adicionais:
+    Implementar uma classe Usuário para representar os usuários da biblioteca, com métodos para empréstimo e devolução de livros.
+    Login com o usuário.
+    Implementar uma classe Funcionário com privilégios especiais, como adicionar e remover livros diretamente no sistema, sendo que Usuário pode apenas pesquisar e pegar livros emprestados (quem faz a devolução é o Funcionário);
+    Interface Gráfica.
+    Conexão a banco de dados.
+
+Primeira prova: 16/04
+Segunda prova: 18/06
