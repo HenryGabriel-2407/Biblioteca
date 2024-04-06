@@ -21,4 +21,5 @@ armazem.add_livro(o_principe)
 
 armazem.listar_livros()
 armazem.pesquisa_livro()
-
+armazem.remove_livro()
+armazem.listar_livros()

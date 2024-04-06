@@ -11,8 +11,11 @@ class Biblioteca():
         if self.__livro == []:
             print("Não há livros para remover\n")
             return
-        livro_removido = self.__livro.pop()
-        print(f"{livro_removido._Livro__titulo} foi removido com sucesso!\n")
+        busca = str(input("Digite o nome completo do livro:"))
+        for book in self.__livro:
+            if busca.lower() in book._Livro__titulo.lower():
+                self.__livro.remove(book)
+                print(f"O livro foi removido com sucesso!\n")
         
     def listar_livros(self) -> None:
         for book in self.__livro:
