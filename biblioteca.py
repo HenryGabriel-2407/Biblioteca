@@ -1,25 +1,38 @@
 from livros import Livro
 from typing import Type
+
 class Biblioteca():
-    def __init__(self) -> None:
+    def __init__(self) -> None: #Construtor
         self.__livro = []
 
-    def add_livro(self, livro: Type[Livro]) -> None:
+    def add_livro(self, livro: Type[Livro]) -> None: #Adicionando livro
         self.__livro.append(livro)
 
-    def remove_livro(self) -> None:
-        if self.__livro == []:
+    def remove_livro(self) -> None: #Removendo livro
+        if self.__livro == []: #se a biblioteca estiver vazia
             print("Não há livros para remover\n")
             return
-        busca = str(input("Digite o nome completo do livro:"))
+        busca = str(input("Digite o nome completo do livro:")) #quando a biblioteca estiver elementos
         for book in self.__livro:
             if busca.lower() in book._Livro__titulo.lower():
                 self.__livro.remove(book)
                 print(f"O livro foi removido com sucesso!\n")
+                return
+        print("Livro não existe na biblioteca.") #quando o livro não está na lista
         
-    def listar_livros(self) -> None:
+    def listar_livros(self) -> None: #listar todos os livros na biblioteca
         for book in self.__livro:
-            print(book.info_livro())
+            print(f"{book.info_livro()}\n")
+        print(" ")
+    
+    def livros_disponiveis(self) -> None: #listar todos os livros se a quantidade for maior do que 1
+        for book in self.__livro:
+            if book._Livro__quantidade > 1:
+                print(book.info_livro())
+                print(f"\tQuantidade: {book._Livro__quantidade}\n")
+            elif book._Livro__quantidade == 1:
+                print(book.info_livro())
+                print("\tQuantidade: 1 (Apenas para o uso local)\n")
         print(" ")
 
     def pesquisa_livro(self) -> None:
@@ -43,35 +56,35 @@ class Biblioteca():
         busca = str(input("Digite o nome do livro: "))
         for book in self.__livro:
             if busca.lower() in book._Livro__titulo.lower():
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
         
     def __pesquisa_autor(self) -> None:
         busca = str(input("Digite o nome do autor: "))
         for book in self.__livro:
             if busca.lower() in book._Livro__autor.lower():
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
 
     def __pesquisa_genero(self) -> None:
         busca = str(input("Digite o gênero: "))
         for book in self.__livro:
             if busca.lower() in book._Livro__genero.lower():
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
 
     def __pesquisa_ano(self) -> None:
         busca = int(input("Digite o ano: "))
         for book in self.__livro:
             if busca == book._Livro__ano:
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
 
     def __pesquisa_ISBN(self) -> None:
         busca = int(input("Digite o ISBN: "))
         for book in self.__livro:
             if busca == book._Livro__isbn:
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
 
     def __pesquisa_avaliacao(self) -> None:
         busca = int(input("Digite a quantidade de estrela [0 a 10]: "))
         for book in self.__livro:
             if busca == len(book._Livro__avaliacao):
-                print(book.info_livro())
+                print(f"{book.info_livro()}\n")
 
