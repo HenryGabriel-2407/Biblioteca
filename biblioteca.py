@@ -23,8 +23,6 @@ class Biblioteca():
         
     def listar_livros(self) -> None: #listar todos os livros na biblioteca
         for book in self.__livro:
-            if book._Livro__quantidade < 1:
-                continue
             print(f"{book.info_livro()}\n")
         print(" ")
     
@@ -32,10 +30,11 @@ class Biblioteca():
         for book in self.__livro:
             if book._Livro__quantidade > 1:
                 print(book.info_livro())
-                print(f"\tQuantidade: {book._Livro__quantidade}\n")
             elif book._Livro__quantidade == 1:
                 print(book.info_livro())
-                print("\tQuantidade: 1 (Apenas para o uso local)\n")
+                print("\t(Apenas para o uso local)\n")
+            else:
+                continue
         print(" ")
 
     def pesquisa_livro(self) -> None:
