@@ -16,8 +16,8 @@ class Biblioteca():
         for book in self.__livro:
             if busca == book._Livro__isbn:
                 nome_removido = book._Livro__isbn
-                self.__livro.remove(book)
-                print(f"O {nome_removido} foi removido com sucesso!\n")
+                book._Livro__quantidade -= 1
+                print(f"O {nome_removido} foi removido com sucesso! Há apenas {book._Livro__quantidade} deste livro.\n")
                 return
         print("Livro não existe na biblioteca.") #quando o livro não está na lista
         
