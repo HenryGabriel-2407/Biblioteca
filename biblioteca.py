@@ -12,16 +12,19 @@ class Biblioteca():
         if self.__livro == []: #se a biblioteca estiver vazia
             print("Não há livros para remover\n")
             return
-        busca = str(input("Digite o nome completo do livro:")) #quando a biblioteca estiver elementos
+        busca = int(input("Digite o ISBN do livro:")) #quando a biblioteca estiver elementos
         for book in self.__livro:
-            if busca.lower() in book._Livro__titulo.lower():
+            if busca == book._Livro__isbn:
+                nome_removido = book._Livro__isbn
                 self.__livro.remove(book)
-                print(f"O livro foi removido com sucesso!\n")
+                print(f"O {nome_removido} foi removido com sucesso!\n")
                 return
         print("Livro não existe na biblioteca.") #quando o livro não está na lista
         
     def listar_livros(self) -> None: #listar todos os livros na biblioteca
         for book in self.__livro:
+            if book._Livro__quantidade < 1:
+                continue
             print(f"{book.info_livro()}\n")
         print(" ")
     

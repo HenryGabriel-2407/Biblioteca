@@ -14,5 +14,6 @@ class Livro:
         info += f"\tGênero: {self.__genero}\n"
         info += f"\tAno: {self.__ano}\n"
         info += f"\tISBN: {self.__isbn}\n"
-        info += f"\tAvaliação: {self.__avaliacao}"
+        info += f"\tAvaliação: {self.__avaliacao}\n"
+        info += f"\tQuantidade: {self.__quantidade}"
         return info
