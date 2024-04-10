@@ -15,9 +15,9 @@ class Biblioteca():
         busca = int(input("Digite o ISBN do livro:")) #quando a biblioteca estiver elementos
         for book in self.__livro:
             if busca == book._Livro__isbn:
-                nome_removido = book._Livro__isbn
+                nome_removido = book._Livro__titulo
                 book._Livro__quantidade -= 1
-                print(f"O {nome_removido} foi removido com sucesso! Há apenas {book._Livro__quantidade} deste livro.\n")
+                print(f"O \"{nome_removido}\" foi removido com sucesso! Há apenas {book._Livro__quantidade} deste livro.\n")
                 return
         print("Livro não existe na biblioteca.") #quando o livro não está na lista
         
