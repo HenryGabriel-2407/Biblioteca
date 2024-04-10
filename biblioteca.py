@@ -24,7 +24,7 @@ class Biblioteca():
     def listar_livros(self) -> None: #listar todos os livros na biblioteca
         for book in self.__livro:
             print(f"{book.info_livro()}\n")
-        print(" ")
+        print("\n\n")
     
     def livros_disponiveis(self) -> None: #listar todos os livros se a quantidade for maior do que 1
         for book in self.__livro:
@@ -34,6 +34,7 @@ class Biblioteca():
                 print(book.info_livro())
                 print("\t(Apenas para o uso local)\n")
             else:
+                print()
                 continue
         print(" ")
 
