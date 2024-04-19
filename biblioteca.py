@@ -1,93 +1,67 @@
 from livros import Livro
 from typing import Type
+import mysql.connector
+
+conexao = mysql.connector.connect(host="localhost", user="root", passwd="@NikolaTesla369", database="bd")
+cursor = conexao.cursor()
 
 class Biblioteca():
-    def __init__(self) -> None: #Construtor
-        self.__livro = []
-
-    def add_livro(self, livro: Type[Livro]) -> None: #Adicionando livro
-        self.__livro.append(livro)
-
-    def remove_livro(self) -> None: #Removendo livro
-        if self.__livro == []: #se a biblioteca estiver vazia
-            print("Não há livros para remover\n")
+    def add_livro(self, livro: Type[Livro]) -> None:
+        # Primeiro vai verificar se o livro já existe no banco
+        titulo_novo, autor_novo, genero_novo = str(livro._Livro__titulo), livro._Livro__autor, livro._Livro__genero
+        sql = f"SELECT titulo, autor, genero FROM livro WHERE titulo = '{titulo_novo}' AND autor = '{autor_novo}' AND genero = '{genero_novo}'"
+        cursor.execute(sql)
+        if cursor.fetchone():
+            print("Esse livro já está na biblioteca")
             return
-        busca = int(input("Digite o ISBN do livro:")) #quando a biblioteca estiver elementos
-        for book in self.__livro:
-            if busca == book._Livro__isbn:
-                nome_removido = book._Livro__titulo
-                book._Livro__quantidade -= 1
-                print(f"O \"{nome_removido}\" foi removido com sucesso! Há apenas {book._Livro__quantidade} deste livro.\n")
-                return
-        print("Livro não existe na biblioteca.") #quando o livro não está na lista
-        
+        #Se o livro não existe na biblioteca
+        sql = f"INSERT INTO `livro` (`titulo`, `autor`, `genero`, `ano`, `avaliacao`, `quantidade`) VALUES ('{livro._Livro__titulo}', '{livro._Livro__autor}', '{livro._Livro__genero}', {livro._Livro__ano}, {livro._Livro__avaliacao}, {livro._Livro__quantidade})"
+        cursor.execute(sql)
+        print("Livro inserido no banco de dados com sucesso.")
+        conexao.commit()
+
     def listar_livros(self) -> None: #listar todos os livros na biblioteca
-        for book in self.__livro:
-            print(f"{book.info_livro()}\n")
-        print("\n\n")
-    
+        sql = "SELECT titulo, autor, genero, ano, avaliacao, quantidade FROM livro"
+        cursor.execute(sql)
+        for (titulo, autor, genero, ano, avaliacao, quantidade) in cursor:
+            estrelas = str('\U0001F31F' * int(avaliacao))
+            print(f"Nome do Livro: {titulo}")
+            print(f"\tAutor(a): {autor}")
+            print(f"\tGênero: {genero}")
+            print(f"\tAno: {ano}")
+            print(f"\tAvaliação: {estrelas}")
+            print(f"\tQuantidade: {quantidade}\n")
+                
     def livros_disponiveis(self) -> None: #listar todos os livros se a quantidade for maior do que 1
-        for book in self.__livro:
-            if book._Livro__quantidade > 1:
-                print(book.info_livro())
-            elif book._Livro__quantidade == 1:
-                print(book.info_livro())
-                print("\t(Apenas para o uso local)\n")
-            else:
-                print()
-                continue
-        print(" ")
+        sql = "SELECT * FROM livro WHERE quantidade > 1"
+        cursor.execute(sql)
+        for titulo, autor, genero, ano, avaliacao, quantidade in cursor: 
+            estrelas = '\U0001F31F' * int(avaliacao)
+            print(f"Nome do Livro: {titulo}")
+            print(f"\tAutor(a): {autor}")
+            print(f"\tGênero: {genero}")
+            print(f"\tAno: {ano}")
+            print(f"\tAvaliação: {estrelas}")
+            print(f"\tQuantidade: {quantidade}")
+            
+    def remover_livro(self) -> None:
+        nome_livro = str(input("Digite o nome do livro a ser excluído: "))
+        sql = f"DELETE FROM livro WHERE titulo = {nome_livro}"
+        cursor.execute(sql)
+        conexao.commit()
 
-    def pesquisa_livro(self) -> None:
-        opcao = int(input("Pesquisar por...\n [1]título do livro\n [2]Autor\n [3]Gênero\n [4]Ano\n [5]ISBN\n [6]Avaliação\n Resposta: "))
-        if opcao == 1: 
-            self.__pesquisa_titulo()
-        elif opcao == 2:    
-            self.__pesquisa_autor()
-        elif opcao == 3:    
-            self.__pesquisa_genero()
-        elif opcao == 4:    
-            self.__pesquisa_ano()
-        elif opcao == 5:    
-            self.__pesquisa_ISBN()
-        elif opcao == 6:    
-            self.__pesquisa_avaliacao()
-        else:   
-            print("Opção Inválida.")
+    def pesquisar_livro(self) -> None:
+        nome_livro = str(input("Digite o nome do livro: "))
+        sql = f"SELECT * FROM livro WHERE  titulo LIKE {nome_livro}"
+        cursor.execute(sql)
+        for titulo, autor, genero, ano, avaliacao, quantidade in cursor: 
+            estrelas = '\U0001F31F' * int(avaliacao)
+            print(f"Nome do Livro: {titulo}")
+            print(f"\tAutor(a): {autor}")
+            print(f"\tGênero: {genero}")
+            print(f"\tAno: {ano}")
+            print(f"\tAvaliação: {estrelas}")
+            print(f"\tQuantidade: {quantidade}")
 
-    def __pesquisa_titulo(self) -> None:
-        busca = str(input("Digite o nome do livro: "))
-        for book in self.__livro:
-            if busca.lower() in book._Livro__titulo.lower():
-                print(f"{book.info_livro()}\n")
-        
-    def __pesquisa_autor(self) -> None:
-        busca = str(input("Digite o nome do autor: "))
-        for book in self.__livro:
-            if busca.lower() in book._Livro__autor.lower():
-                print(f"{book.info_livro()}\n")
-
-    def __pesquisa_genero(self) -> None:
-        busca = str(input("Digite o gênero: "))
-        for book in self.__livro:
-            if busca.lower() in book._Livro__genero.lower():
-                print(f"{book.info_livro()}\n")
-
-    def __pesquisa_ano(self) -> None:
-        busca = int(input("Digite o ano: "))
-        for book in self.__livro:
-            if busca == book._Livro__ano:
-                print(f"{book.info_livro()}\n")
-
-    def __pesquisa_ISBN(self) -> None:
-        busca = int(input("Digite o ISBN: "))
-        for book in self.__livro:
-            if busca == book._Livro__isbn:
-                print(f"{book.info_livro()}\n")
-
-    def __pesquisa_avaliacao(self) -> None:
-        busca = int(input("Digite a quantidade de estrela [0 a 10]: "))
-        for book in self.__livro:
-            if busca == len(book._Livro__avaliacao):
-                print(f"{book.info_livro()}\n")
-
+    def editar_livro(self) -> None:
+        pass
