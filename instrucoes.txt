@@ -4,23 +4,23 @@ Individual
 Sem apresentação
 
 Classes Principais:
-    Livro: Uma classe para representar um livro, com atributos como título, autor, ISBN, gênero, etc.
-    Biblioteca: Uma classe para representar a biblioteca, que contém uma lista de livros e métodos para adicionar, remover e pesquisar livros.
+    Livro: Uma classe para representar um livro, com atributos como título, autor, ISBN, gênero, etc. -> OK
+    Biblioteca: Uma classe para representar a biblioteca, que contém uma lista de livros e métodos para adicionar, remover e pesquisar livros. -> OK
 
 Funcionalidades:
-    Adicionar um novo livro à biblioteca.
-    Remover um livro da biblioteca.
-    Editar um livro da biblioteca. (um CRUD)
-    Pesquisar um livro por título, autor, ISBN, ou gênero.
-    Exibir todos os livros disponíveis na biblioteca.
-    Permitir o empréstimo e devolução de livros, com controle de disponibilidade.
+    Adicionar um novo livro à biblioteca. -> OK
+    Remover um livro da biblioteca. -> OK
+    Editar um livro da biblioteca. (um CRUD) -> OK
+    Pesquisar um livro por título, autor, ISBN, ou gênero. -> OK (ISBN EM PRODUÇÃO)
+    Exibir todos os livros disponíveis na biblioteca. -> OK
+    Permitir o empréstimo e devolução de livros, com controle de disponibilidade. -> EM PRODUÇÃO
 
 Recursos Adicionais:
-    Implementar uma classe Usuário para representar os usuários da biblioteca, com métodos para empréstimo e devolução de livros.
-    Login com o usuário.
-    Implementar uma classe Funcionário com privilégios especiais, como adicionar e remover livros diretamente no sistema, sendo que Usuário pode apenas pesquisar e pegar livros emprestados (quem faz a devolução é o Funcionário);
-    Interface Gráfica.
-    Conexão a banco de dados.
+    Implementar uma classe Usuário para representar os usuários da biblioteca, com métodos para empréstimo e devolução de livros. -> EM PRODUÇÃO
+    Login com o usuário. -> EM PRODUÇÃO
+    Implementar uma classe Funcionário com privilégios especiais, como adicionar e remover livros diretamente no sistema, sendo que Usuário pode apenas pesquisar e pegar livros emprestados (quem faz a devolução é o Funcionário); -> EM PRODUÇÃO
+    Interface Gráfica. -> EM PRODUÇÃO
+    Conexão a banco de dados. -> OK
 
 Primeira prova: 16/04
 Segunda prova: 18/06
