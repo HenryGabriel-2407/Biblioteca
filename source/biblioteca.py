@@ -115,6 +115,34 @@ class Biblioteca():
             print("Erro, tente novamente...")
     
     def emprestimo_livro(self):
-        pass
+        pesquisar_nome = str(input("Digite o título do livro: "))
+        try:
+            sql = f"SELECT * FROM livro WHERE titulo = '{pesquisar_nome}'"
+            cursor.execute(sql)
+            for (titulo, autor, genero, ano, avaliacao, quantidade) in cursor:
+                estrelas = str('\U0001F31F' * int(avaliacao))
+                print(f"Nome do Livro: {titulo}")
+                print(f"\tAutor(a): {autor}")
+                print(f"\tGênero: {genero}")
+                print(f"\tAno: {ano}")
+                print(f"\tAvaliação: {estrelas}")
+                print(f"\tQuantidade: {quantidade}")
+            levar_ou_nao = str(input("Deseja levar? [Y/N]: "))
+            if levar_ou_nao == 'Y' and quantidade > 1:
+                sql = f"UPDATE livro SET quantidade = {quantidade - 1} WHERE titulo = '{pesquisar_nome}'"
+                cursor.execute(sql)
+                conexao.commit()
+            elif levar_ou_nao == "N":
+                print("OK!")
+            else:
+                print(f"Infelizmente não poderá levar o {pesquisar_nome}")
+        except:
+            print("Erro, tente novamente...")
+
+
     def devolucao_livro(self):
-        pass
+        pesquisar_nome = str(input("Digite o título do livro: "))
+        try:
+            sql = f"SELECT quantidade FROM livro WHERE titulo = '{pesquisar_nome}'"
+            cursor.execute(sql)
+
