@@ -13,7 +13,7 @@ Funcionalidades:
     Editar um livro da biblioteca. (um CRUD) -> OK
     Pesquisar um livro por título, autor, ISBN, ou gênero. -> OK (ISBN EM PRODUÇÃO)
     Exibir todos os livros disponíveis na biblioteca. -> OK
-    Permitir o empréstimo e devolução de livros, com controle de disponibilidade. -> EM PRODUÇÃO
+    Permitir o empréstimo e devolução de livros, com controle de disponibilidade. -> OK
 
 Recursos Adicionais:
     Implementar uma classe Usuário para representar os usuários da biblioteca, com métodos para empréstimo e devolução de livros. -> EM PRODUÇÃO
