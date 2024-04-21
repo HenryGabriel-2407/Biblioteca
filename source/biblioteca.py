@@ -2,7 +2,7 @@ from livros import Livro
 from typing import Type
 import mysql.connector
 
-conexao = mysql.connector.connect(host="localhost", user="root", passwd="@NikolaTesla369", database="bd")
+conexao = mysql.connector.connect(host="localhost", user="root", passwd="senha", database="bd")
 cursor = conexao.cursor()
 
 class Biblioteca():
