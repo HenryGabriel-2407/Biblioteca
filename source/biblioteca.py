@@ -2,7 +2,7 @@ from livros import Livro
 from typing import Type
 import mysql.connector
 
-conexao = mysql.connector.connect(host="localhost", user="root", passwd="senha", database="bd")
+conexao = mysql.connector.connect(host="localhost", user="root", passwd="@NikolaTesla369", database="teste")
 cursor = conexao.cursor()
 
 class Biblioteca():
@@ -17,7 +17,7 @@ class Biblioteca():
         #Se o livro não existe na biblioteca
         sql = f"INSERT INTO `livro` (`titulo`, `autor`, `genero`, `ano`, `avaliacao`, `quantidade`) VALUES ('{livro._Livro__titulo}', '{livro._Livro__autor}', '{livro._Livro__genero}', {livro._Livro__ano}, {livro._Livro__avaliacao}, {livro._Livro__quantidade})"
         cursor.execute(sql)
-        print("Livro inserido no banco de dados com sucesso. \n {'#' * 40}")
+        print("Livro inserido no banco de dados com sucesso. \n")
         conexao.commit()
         print("#" * 40)
 
