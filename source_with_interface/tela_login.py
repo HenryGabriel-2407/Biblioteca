@@ -8,7 +8,7 @@ from tela_usuario import UserTela
 #conexão ao database
 class Login:
     def main(self):
-        conexao = myconn.connect(host="localhost", user="root", passwd="@NikolaTesla369", database="teste")
+        conexao = myconn.connect(host="localhost", user="root", passwd="senha", database="teste")
         cursor = conexao.cursor()
 
         #criando interface

@@ -3,7 +3,7 @@ import customtkinter as ctk
 
 class UserTela:
     def __init__(self, nome, email, senha):
-        self.conexao = myconn.connect(host="localhost", user="root", passwd="@NikolaTesla369", database="teste")
+        self.conexao = myconn.connect(host="localhost", user="root", passwd="senha", database="teste")
         self.cursor = self.conexao.cursor()
         
         self.janela = ctk.CTk()
